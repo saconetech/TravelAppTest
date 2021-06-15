@@ -1,0 +1,444 @@
+﻿@*@{
+        ViewBag.Title = "Index";
+    }*@
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="./css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+      
+        .tab-content {
+            background-color: #6a6ee0;
+            border-radius: 30px;
+            padding: 15px;
+        }
+
+        .monthly-table, .yearly-table {
+            background-color: #6a6ee0;
+        }
+
+            .monthly-table tr {
+                background-color: #a89fb782;
+                display: flex;
+                flex-direction: column;
+                margin: 10px;
+            }
+
+        h5, h6, p {
+            margin: 0px;
+        }
+
+        select {
+            word-wrap: normal;
+            width: 130px;
+            padding: 5px;
+            border: none;
+            outline: none;
+            background: #6a6ee0;
+            color: #fff;
+            border-bottom: 1px solid #030d8a;
+
+        }
+
+        .yearly-table p {
+            font-size: 14px;
+        }
+
+        .yearly-table h4 {
+            color: #ffdb28;
+        }
+
+        .border-rounded {
+            border-radius: 15px;
+        }
+
+        .nav-item a {
+            border-radius: 20px !important;
+            padding: 5px 20px !important;
+            border: none !important;
+            color: #fff !important;
+            background-color: #293a8c70;
+            margin: 0px 5px 0px 0px;
+        }
+
+
+            .nav-item a.active, .nav-item a:hover {
+                border-radius: 20px;
+                padding: 5px 20px;
+                background-color: #030d8a !important;
+            }
+        .nav-tabs{
+            border:none !important;
+        }
+        .background-style {
+            background: #030d8a;
+            flex-direction: column;
+            border-radius: 30px;
+            padding: 0px 0px 15px 0px;
+        }
+
+        .div-padding {
+            padding: 20px 30px;
+        }
+
+        .padding-15 {
+            padding: 0px 30px;
+        }
+
+        .div-padding p {
+            margin: 0px;
+            color: #fff;
+        }
+
+        .btn-book {
+            border: none;
+            border-radius: 15px;
+            padding: 8px 20px;
+            font-size: 10px;
+            font-weight: bold;
+            background-color: #ffa500;
+        }
+
+        .yearly-table .btn-book {
+            background-color: #ffdb28;
+        }
+
+        .font-70 {
+            font-size: 70%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center h-100 p-0">
+        <div id="divSection">
+
+        </div>
+        <div class="w-100 background-style">
+
+            <div class="tab-content">
+                <ul class="nav nav-tabs border-0 my-4 ml-3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active border-1" id="aw_wind" data-toggle="tab" href="#wind_aw" role="tab"
+                           aria-controls="wind_aw" aria-selected="true">Yearly</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="osf_wind" data-toggle="tab" href="#wind_osf" role="tab"
+                           aria-controls="wind_osf" aria-selected="false">Monthly</a>
+                    </li>
+                </ul>
+                <div id="divgrade" class="pl-4 pb-3 d-flex">
+                    <select class="mr-5"></select>
+                        <ul id="add_tab" class="nav nav-tabs ml-5" role="tablist">
+                            <li class="nav-item mx-3">
+                                <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">–A–</a>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">–B–</a>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">–C–</a>
+                            </li>
+                        </ul>
+                </div>
+                <div class="tab-pane fade show active" id="wind_aw" role="tabpanel" aria-labelledby="aw_wind">
+
+                    <table *ngIf="arrStudentsdata" class="w-100 yearly-table">
+                        <tbody>
+                            <tr class="border-rounded">
+                                <td>
+                                    <div class="d-flex justify-content-around align-items-center flex-direction-row my-2 flex-wrap">
+                                        <div>
+                                            <p>
+                                                Total<br />
+                                                Session
+                                            </p>
+                                            <h4>144</h4>
+                                        </div>
+                                        <div>
+                                            <p>
+                                                Online Pre<br />
+                                                Assements<br />
+                                            </p>
+                                            <h4>144</h4>
+                                        </div>
+                                        <div>
+                                            <p>
+                                                Online Post<br />
+                                                Assements<br />
+                                            </p>
+                                            <h4>144</h4>
+                                        </div>
+                                        <div>
+                                            <p>
+                                                Online<br />
+                                                Practice<br />
+                                            </p>
+                                            <h4>144</h4>
+                                        </div>
+                                        <div>
+                                            <p>
+                                                Online<br />
+                                                Test<br />
+                                            </p>
+                                            <h4>144</h4>
+                                        </div>
+                                        <div>
+                                            <p>
+                                                Career Counselling<br />
+                                                Sessions with Edu coach<br />
+                                            </p>
+                                            <h4>144</h4>
+                                        </div>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-5">Course topic include</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="wind_osf" role="tabpanel" aria-labelledby="osf_wind">
+               
+                    <table class="w-100 monthly-table" style="width:100%;">
+                        <tbody>
+                            <tr class="border-rounded">
+                                <td>
+                                    <div class="d-flex justify-content-around align-items-center my-2">
+                                        <input type="radio" name="firstmonth" id="firstmonth" value="1">
+                                        <div>
+                                            <h6>1 Month</h6>
+                                            <p>Money refund same day<sup>*</sup></p>
+                                        </div>
+                                        <div>
+                                            <h5>
+                                                <i class="fa fa-inr" aria-hiddden="true"></i> 1620 <del>
+                                                    <i class="fa fa-inr" aria-hiddden="true"></i> 1600
+                                                </del>
+                                            </h5>
+                                            <span class="bg-primary text-white badge fs-6">10% OFF</span>
+                                        </div>
+                                        <div>
+                                            <p><i class="fa fa-inr"></i>324 per session</p>
+                                            <p>5 sessions</p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-rounded">
+                                <td>
+                                    <div class="d-flex justify-content-around align-items-center my-2">
+                                        <input type="radio" name="firstmonth" id="firstmonth" value="1">
+                                        <div>
+                                            <h6>1 Month</h6>
+                                            <p>Money refund same day<sup>*</sup></p>
+                                        </div>
+                                        <div>
+                                            <h5>
+                                                <i class="fa fa-inr" aria-hiddden="true"></i> 1620 <del>
+                                                    <i class="fa fa-inr" aria-hiddden="true"></i> 1600
+                                                </del>
+                                            </h5>
+                                            <span class="bg-primary text-white badge fs-6">10% OFF</span>
+                                        </div>
+                                        <div>
+                                            <p><i class="fa fa-inr"></i>324 per session</p>
+                                            <p>5 sessions</p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-rounded">
+                                <td>
+                                    <div class="d-flex justify-content-around align-items-center my-2">
+                                        <input type="radio" name="firstmonth" id="firstmonth" value="1">
+                                        <div>
+                                            <h6>1 Month</h6>
+                                            <p>Money refund same day<sup>*</sup></p>
+                                        </div>
+                                        <div>
+                                            <h5>
+                                                <i class="fa fa-inr" aria-hiddden="true"></i> 1620 <del>
+                                                    <i class="fa fa-inr" aria-hiddden="true"></i> 1600
+                                                </del>
+                                            </h5>
+                                            <span class="bg-primary text-white badge fs-6">10% OFF</span>
+                                        </div>
+                                        <div>
+                                            <p><i class="fa fa-inr"></i>324 per session</p>
+                                            <p>5 sessions</p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-rounded">
+                                <td>
+                                    <div class="d-flex justify-content-around align-items-center my-2">
+                                        <input type="radio" name="firstmonth" id="firstmonth" value="1">
+                                        <div>
+                                            <h6>1 Month</h6>
+                                            <p>Money refund same day<sup>*</sup></p>
+                                        </div>
+                                        <div>
+                                            <h5>
+                                                <i class="fa fa-inr" aria-hiddden="true"></i> 1620 <del>
+                                                    <i class="fa fa-inr" aria-hiddden="true"></i> 1600
+                                                </del>
+                                            </h5>
+                                            <span class="bg-primary text-white badge fs-6">10% OFF</span>
+                                        </div>
+                                        <div>
+                                            <p><i class="fa fa-inr"></i>324 per session</p>
+                                            <p>5 sessions</p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="d-flex justify-content-between align-items-center div-padding">
+                    <div>
+                        <p>
+                            Monthly classes let you choose
+                        </p>
+                        <p>
+                            your own course topics
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            Each session last
+                        </p>
+                        <p> 45 mins</p>
+
+                    </div>
+                    <div>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+
+                </div>
+                <div class="text-right text-white padding-15">
+                    <small class="font-70">
+                        Refund same day <u>terms & conditions</u> apply<sup>*</sup>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    //var url = "./Traveldata.json";
+    $(document).ready(function () {
+        $.ajax({
+            contentType: 'application/json',
+            //dataType:'json',
+            type: 'GET',
+            url: '/Dashboard/JsonData',
+            contentType: 'json',
+            success: function (data) {
+                debugger;
+                var jsonparse = JSON.parse(data);
+                //var myArray = $.makeArray(data);
+                //console.log(jsonparse);
+                var jsonArray = '{"required":1, "minlength":2}'
+                var jsonParsedArray = JSON.parse(data);
+                //for (var i = 0; i < jsonparse.length; i++) {//Main MOnthly/Yearly
+                    //    //alert(jsonparse[i]["monthly"]);
+                    //for (var j = 0; j < jsonparse[i]["monthly"].length; j++) {
+                    //   /* for (key in jsonparse[i]["monthly"][j].grade) {*/
+                    //        //if (jsonparse[i]["monthly"][j].boards.general.hasOwnProperty(key)) {
+                    //        //    console.log("%c " + key + " = " + jsonparse[i]["monthly"][j].boards.general[key], "color:cyan");
+                    //    var selectdrop = "<select id='cars'>";
+                    //      selectdrop += "<option value='" + jsonparse[i]["monthly"][j].grade + "'>" + jsonparse[i]["monthly"][j].grade + "</option >"
+                      
+                        //if (jsonparse[i]["monthly"][j].grade == "Grade 6") {
+                        //        for (key in jsonparse[i]["monthly"][j].boards.general) {
+                        //            if (jsonparse[i]["monthly"][j].boards.general.hasOwnProperty(key)) {
+                        //                console.log("%c " + key + " = " + jsonparse[i]["monthly"][j].boards.general[key].price, "color:cyan");
+
+                        //            //}
+                        //        }
+
+
+                        //        //Object.keys(jsonparse[i]["monthly"][j].boards.general["5_sessions"]).forEach(function (key) {
+                        //        //    console.log(jsonparse[i]["monthly"][j].boards.general["5_sessions"][key].price);
+                        //        //});
+                        //        //}
+                        //    }
+                            var sessionval;
+                            var selectdrop = "";
+                            for (var i = 0; i < jsonparse[0]["monthly"].length; i++) {//Main MOnthly/Yearly
+                                //alert(jsonparse[i]["monthly"]);
+                                for (var j = 0; j < jsonparse[i]["monthly"].length; j++) {
+                                    //alert(jsonparse[i]["monthly"][j].grade);
+                                    //var selectdrop = "<select id='cars'>";
+                                    selectdrop += "<option value='" + jsonparse[i]["monthly"][j].grade + "'>" + jsonparse[i]["monthly"][j].grade + "</option >"
+                                 
+                                  
+                                   // var selectgrade = jsonparse[i]["monthly"][j].grade;
+                                   //// if (jsonparse[i]["monthly"][j].grade == "Grade 6") {
+                                   // var gradeval = jsonparse[i]["monthly"][j].grade;
+                                   // for (key in jsonparse[i]["monthly"][j].boards.general) {
+                                   //     console.log(jsonparse[i]["monthly"][j].boards.general[key])
+                                   //     var sessionval = jsonparse[i]["monthly"][j].boards.general[key];
+
+                                   // }
+                                } 
+                                    //$("select").on("change", () => {
+                                      
+                                    //    for (key in jsonparse[i]["monthly"][j].boards.general) {
+                                    //        console.log(jsonparse[i]["monthly"][j].boards.general[key].price)
+                                    //    }
+                                    //    //$("table").html(`<tr><th>Model</th></tr>`);
+                                    //    //$("table").append("<tr><td>"+jsonparse[i]["monthly"][j].boards.general[key].price+"</td></tr>");
+                                    //});
+                                    //$("#divgrade").append(selectdrop);
+                           
+                             
+                           
+                            //}
+                            ////
+                            //var bindSelection = "<select id='ddlsection' class='form-control'>";
+                            //bindSelection += "<option value=''>-- Please selectclass --</option>";
+                            //for (var i = 0; i < jsonparse.length; i++) {
+                            //    bindSelection += "<option value' = " + jsonparse[i].sectionId + ">" + jsonparse[i].sectionName + '</option>"';
+                            //}
+                            //bindSelection += "</select>";
+                            //$("#divSection").html(bindSelection);
+                                $("#divgrade select").append(selectdrop);
+               
+        }
+
+             
+            
+                console.log(sessionval.valid + "" + sessionval.price + "" + sessionval.refund + "" + sessionval.discount + "" + sessionval.per_class_price);
+                
+                           
+                                
+                    
+                //}
+
+            },
+            error: function (error) {
+                alert("error");
+            }
+
+        });
+    });
+</script>
+
